@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5D9F1EDC1D7CB28A0009A8A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9F1EDB1D7CB28A0009A8A9 /* AppDelegate.swift */; };
-		5D9F1EDE1D7CB28A0009A8A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9F1EDD1D7CB28A0009A8A9 /* ViewController.swift */; };
 		5D9F1EE01D7CB28A0009A8A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D9F1EDF1D7CB28A0009A8A9 /* Assets.xcassets */; };
 		5D9F1EE31D7CB28A0009A8A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D9F1EE11D7CB28A0009A8A9 /* Main.storyboard */; };
 		5D9F1EEE1D7CB28A0009A8A9 /* AkedoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9F1EED1D7CB28A0009A8A9 /* AkedoTests.swift */; };
@@ -35,7 +34,6 @@
 /* Begin PBXFileReference section */
 		5D9F1ED81D7CB28A0009A8A9 /* Akedo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Akedo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9F1EDB1D7CB28A0009A8A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5D9F1EDD1D7CB28A0009A8A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5D9F1EDF1D7CB28A0009A8A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D9F1EE21D7CB28A0009A8A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5D9F1EE41D7CB28A0009A8A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				5D9F1EDB1D7CB28A0009A8A9 /* AppDelegate.swift */,
-				5D9F1EDD1D7CB28A0009A8A9 /* ViewController.swift */,
 				5D9F1EDF1D7CB28A0009A8A9 /* Assets.xcassets */,
 				5D9F1EE11D7CB28A0009A8A9 /* Main.storyboard */,
 				5D9F1EE41D7CB28A0009A8A9 /* Info.plist */,
@@ -252,7 +249,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D9F1EDE1D7CB28A0009A8A9 /* ViewController.swift in Sources */,
 				5D9F1EDC1D7CB28A0009A8A9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +471,7 @@
 				5D9F1EFF1D7CB28A0009A8A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5D9F1F001D7CB28A0009A8A9 /* Build configuration list for PBXNativeTarget "AkedoTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +480,7 @@
 				5D9F1F021D7CB28A0009A8A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5D9F1F031D7CB28A0009A8A9 /* Build configuration list for PBXNativeTarget "AkedoUITests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +489,7 @@
 				5D9F1F051D7CB28A0009A8A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
