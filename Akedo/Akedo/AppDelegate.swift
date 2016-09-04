@@ -11,7 +11,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     /// The main status item for Akedo
-    var uploadStatusBarItem : NSStatusItem = NSStatusItem();
+    var uploadStatusItem : NSStatusItem = NSStatusItem();
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
@@ -21,18 +21,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Creates uploadStatusBarItem
     func createStatusItem() {
-        // Create uploadStatusBarItem
-        uploadStatusBarItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1);
+        // Create uploadStatusItem
+        uploadStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1);
         
         // Set the item's image scaling
-        (uploadStatusBarItem.button!.cell as! NSButtonCell).imageScaling = .ScaleProportionallyDown;
+        (uploadStatusItem.button!.cell as! NSButtonCell).imageScaling = .ScaleProportionallyDown;
         
         // Set the icon
-        uploadStatusBarItem.image = NSImage(named: "AKUploadIcon")!;
+        uploadStatusItem.image = NSImage(named: "AKUploadIcon")!;
+        
+        // Set the target and action
+        uploadStatusItem.button!.target = self;
+        uploadStatusItem.button!.action = Selector("uploadStatusItemPressed");
+    }
+    
+    /// Called when the user presses uploadStatusItem
+    func uploadStatusItemPressed() {
+        
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
 }
-
