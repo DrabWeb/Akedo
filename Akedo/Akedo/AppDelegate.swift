@@ -55,14 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 // Add the current file URL to fileList
                 fileList.append(currentFileUrl.absoluteString.stringByRemovingPercentEncoding!.stringByReplacingOccurrencesOfString("file://", withString: ""));
             }
-            
-            // Test upload
-            AKPomf(name: "mixtape.moe", url: "https://mixtape.moe/").uploadFile(fileList, completionHandler: uploadCompleted);
         }
-    }
-    
-    func uploadCompleted(response : ([String], Bool)) {
-        print(response);
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
