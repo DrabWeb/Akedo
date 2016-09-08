@@ -37,7 +37,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Called when the user presses uploadStatusItem
     func uploadStatusItemPressed() {
+        /// The open panel for prompting for file(s) to upload
+        let openPanel : NSOpenPanel = NSOpenPanel();
         
+        // Setup the open panel
+        openPanel.canChooseDirectories = false;
+        openPanel.prompt = "Upload";
+        openPanel.allowsMultipleSelection = true;
+        
+        // Run the open panel, and if the user selects "Upload"...
+        if(Bool(openPanel.runModal())) {
+            /// The list of files to upload
+            var fileList : [String] = [];
+            
+            // For every file URL selected in the openPanel...
+            for(_, currentFileUrl) in openPanel.URLs.enumerate() {
+                // Add the current file URL to fileList
+                fileList.append(currentFileUrl.absoluteString.stringByRemovingPercentEncoding!.stringByReplacingOccurrencesOfString("file://", withString: ""));
+            }
+            
+            // Test upload
+            AKPomf(name: "mixtape.moe", url: "https://mixtape.moe/").uploadFile(fileList, completionHandler: uploadCompleted);
+        }
+    }
+    
+    func uploadCompleted(response : ([String], Bool)) {
+        print(response);
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
