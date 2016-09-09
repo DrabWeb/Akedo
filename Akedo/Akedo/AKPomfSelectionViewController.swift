@@ -115,6 +115,9 @@ class AKPomfSelectionViewController: NSViewController {
         
         // Destroy the key listener
         NSEvent.removeMonitor(keyListener!);
+        
+        // Reactivate the previous app
+        NSApplication.sharedApplication().hide(self);
     }
     
     /// Styles the window
