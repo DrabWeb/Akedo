@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D1207211D835B6E002E24F7 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5D1207201D835B6E002E24F7 /* icon.icns */; };
+		5D1207241D835B6E002E24F7 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1207231D835B6E002E24F7 /* ShareViewController.swift */; };
+		5D1207271D835B6E002E24F7 /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D1207251D835B6E002E24F7 /* ShareViewController.xib */; };
+		5D12072B1D835B6E002E24F7 /* Upload with Akedo.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5D12071D1D835B6E002E24F7 /* Upload with Akedo.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5D7F9A441D82025C007BAE4F /* AKPomfSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F9A431D82025C007BAE4F /* AKPomfSelectionViewController.swift */; };
 		5D9F1EDC1D7CB28A0009A8A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9F1EDB1D7CB28A0009A8A9 /* AppDelegate.swift */; };
 		5D9F1EE01D7CB28A0009A8A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D9F1EDF1D7CB28A0009A8A9 /* Assets.xcassets */; };
@@ -21,6 +25,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5D1207291D835B6E002E24F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5D9F1ED01D7CB28A0009A8A9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5D12071C1D835B6E002E24F7;
+			remoteInfo = "Upload with Akedo";
+		};
 		5D9F1EEA1D7CB28A0009A8A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5D9F1ED01D7CB28A0009A8A9 /* Project object */;
@@ -37,10 +48,30 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5D1207021D835879002E24F7 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5D12072B1D835B6E002E24F7 /* Upload with Akedo.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		031F40BFE6F6294EFF4BA3F7 /* Pods_AkedoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AkedoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04424F03F896352CFA07A44A /* Pods-AkedoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkedoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AkedoUITests/Pods-AkedoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B6B09802DAD6912424D7DD0 /* Pods-AkedoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkedoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AkedoTests/Pods-AkedoTests.release.xcconfig"; sourceTree = "<group>"; };
+		5D12071D1D835B6E002E24F7 /* Upload with Akedo.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Upload with Akedo.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D1207201D835B6E002E24F7 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		5D1207221D835B6E002E24F7 /* Upload_with_Akedo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Upload_with_Akedo.entitlements; sourceTree = "<group>"; };
+		5D1207231D835B6E002E24F7 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		5D1207261D835B6E002E24F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShareViewController.xib; sourceTree = "<group>"; };
+		5D1207281D835B6E002E24F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D7F9A431D82025C007BAE4F /* AKPomfSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKPomfSelectionViewController.swift; sourceTree = "<group>"; };
 		5D9F1ED81D7CB28A0009A8A9 /* Akedo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Akedo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9F1EDB1D7CB28A0009A8A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +95,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5D12071A1D835B6E002E24F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5D9F1ED51D7CB28A0009A8A9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,12 +142,33 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5D12071E1D835B6E002E24F7 /* Upload with Akedo */ = {
+			isa = PBXGroup;
+			children = (
+				5D1207231D835B6E002E24F7 /* ShareViewController.swift */,
+				5D1207251D835B6E002E24F7 /* ShareViewController.xib */,
+				5D1207281D835B6E002E24F7 /* Info.plist */,
+				5D12071F1D835B6E002E24F7 /* Supporting Files */,
+			);
+			path = "Upload with Akedo";
+			sourceTree = "<group>";
+		};
+		5D12071F1D835B6E002E24F7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5D1207201D835B6E002E24F7 /* icon.icns */,
+				5D1207221D835B6E002E24F7 /* Upload_with_Akedo.entitlements */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		5D9F1ECF1D7CB28A0009A8A9 = {
 			isa = PBXGroup;
 			children = (
 				5D9F1EDA1D7CB28A0009A8A9 /* Akedo */,
 				5D9F1EEC1D7CB28A0009A8A9 /* AkedoTests */,
 				5D9F1EF71D7CB28A0009A8A9 /* AkedoUITests */,
+				5D12071E1D835B6E002E24F7 /* Upload with Akedo */,
 				5D9F1ED91D7CB28A0009A8A9 /* Products */,
 				105BA61579D35E42381EAE64 /* Pods */,
 				65BEA81156CD195BDA325CA5 /* Frameworks */,
@@ -122,6 +181,7 @@
 				5D9F1ED81D7CB28A0009A8A9 /* Akedo.app */,
 				5D9F1EE91D7CB28A0009A8A9 /* AkedoTests.xctest */,
 				5D9F1EF41D7CB28A0009A8A9 /* AkedoUITests.xctest */,
+				5D12071D1D835B6E002E24F7 /* Upload with Akedo.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,6 +231,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5D12071C1D835B6E002E24F7 /* Upload with Akedo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5D12072C1D835B6E002E24F7 /* Build configuration list for PBXNativeTarget "Upload with Akedo" */;
+			buildPhases = (
+				5D1207191D835B6E002E24F7 /* Sources */,
+				5D12071A1D835B6E002E24F7 /* Frameworks */,
+				5D12071B1D835B6E002E24F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Upload with Akedo";
+			productName = "Upload with Akedo";
+			productReference = 5D12071D1D835B6E002E24F7 /* Upload with Akedo.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		5D9F1ED71D7CB28A0009A8A9 /* Akedo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5D9F1EFD1D7CB28A0009A8A9 /* Build configuration list for PBXNativeTarget "Akedo" */;
@@ -181,10 +258,12 @@
 				5D9F1ED61D7CB28A0009A8A9 /* Resources */,
 				C0DA2206008AB072C30639B4 /* 📦 Embed Pods Frameworks */,
 				8E137E466614C69BD53FF9BB /* 📦 Copy Pods Resources */,
+				5D1207021D835879002E24F7 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5D12072A1D835B6E002E24F7 /* PBXTargetDependency */,
 			);
 			name = Akedo;
 			productName = Akedo;
@@ -242,6 +321,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = DrabWeb;
 				TargetAttributes = {
+					5D12071C1D835B6E002E24F7 = {
+						CreatedOnToolsVersion = 7.2;
+					};
 					5D9F1ED71D7CB28A0009A8A9 = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -271,11 +353,21 @@
 				5D9F1ED71D7CB28A0009A8A9 /* Akedo */,
 				5D9F1EE81D7CB28A0009A8A9 /* AkedoTests */,
 				5D9F1EF31D7CB28A0009A8A9 /* AkedoUITests */,
+				5D12071C1D835B6E002E24F7 /* Upload with Akedo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5D12071B1D835B6E002E24F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D1207271D835B6E002E24F7 /* ShareViewController.xib in Resources */,
+				5D1207211D835B6E002E24F7 /* icon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5D9F1ED61D7CB28A0009A8A9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -425,6 +517,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5D1207191D835B6E002E24F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D1207241D835B6E002E24F7 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5D9F1ED41D7CB28A0009A8A9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -455,6 +555,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5D12072A1D835B6E002E24F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5D12071C1D835B6E002E24F7 /* Upload with Akedo */;
+			targetProxy = 5D1207291D835B6E002E24F7 /* PBXContainerItemProxy */;
+		};
 		5D9F1EEB1D7CB28A0009A8A9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5D9F1ED71D7CB28A0009A8A9 /* Akedo */;
@@ -468,6 +573,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		5D1207251D835B6E002E24F7 /* ShareViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5D1207261D835B6E002E24F7 /* Base */,
+			);
+			name = ShareViewController.xib;
+			sourceTree = "<group>";
+		};
 		5D9F1EE11D7CB28A0009A8A9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -479,6 +592,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5D12072D1D835B6E002E24F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Upload with Akedo/Upload_with_Akedo.entitlements";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Upload with Akedo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "drabweb.Akedo.Upload-with-Akedo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		5D12072E1D835B6E002E24F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Upload with Akedo/Upload_with_Akedo.entitlements";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Upload with Akedo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "drabweb.Akedo.Upload-with-Akedo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		5D9F1EFB1D7CB28A0009A8A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -565,6 +704,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Akedo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -579,6 +719,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Akedo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -646,6 +787,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5D12072C1D835B6E002E24F7 /* Build configuration list for PBXNativeTarget "Upload with Akedo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5D12072D1D835B6E002E24F7 /* Debug */,
+				5D12072E1D835B6E002E24F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5D9F1ED31D7CB28A0009A8A9 /* Build configuration list for PBXProject "Akedo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
