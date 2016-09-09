@@ -675,20 +675,19 @@
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="wms-LO-t0E">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="343"/>
                                 <subviews>
-                                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="57" horizontalPageScroll="10" verticalLineScroll="57" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8U-cl-t0g" userLabel="Scroll View - Pomf List Table View">
+                                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="58" horizontalPageScroll="10" verticalLineScroll="58" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8U-cl-t0g" userLabel="Scroll View - Pomf List Table View">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="343"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="AvR-Da-TQ4">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="343"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="55" viewBased="YES" id="vNS-ah-Sj7" userLabel="Pomf List Table View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="343"/>
+                                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="58" viewBased="YES" id="vNS-ah-Sj7" userLabel="Pomf List Table View">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn identifier="Main Column" width="297" minWidth="40" maxWidth="1000" id="IVi-f2-NzL">
+                                                        <tableColumn identifier="Main Column" width="300" minWidth="40" maxWidth="1000" id="IVi-f2-NzL">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -702,54 +701,67 @@
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView id="XGL-kX-GCJ" customClass="AKPomfTableCellView" customModule="Akedo" customModuleProvider="target">
-                                                                    <rect key="frame" x="1" y="1" width="297" height="55"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="58"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="nz3-Ke-Dkv" userLabel="Name">
-                                                                            <rect key="frame" x="4" y="30" width="289" height="17"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="17" id="9lk-if-wKl"/>
-                                                                            </constraints>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Pomf Name" id="1i7-mS-Di3">
-                                                                                <font key="font" metaFont="system" size="15"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
-                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" alphaValue="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="tu6-91-Y9f" userLabel="URL">
-                                                                            <rect key="frame" x="4" y="9" width="289" height="17"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="17" id="gZi-Hc-X1Q"/>
-                                                                            </constraints>
-                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Pomf URL" id="Elk-Cq-ZTr">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
                                                                         <box verticalHuggingPriority="750" alphaValue="0.25" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="d3E-Dt-xOI" userLabel="Bottom Separator">
-                                                                            <rect key="frame" x="3" y="-2" width="291" height="5"/>
+                                                                            <rect key="frame" x="3" y="-2" width="294" height="4"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="height" constant="1" id="Hik-Am-44D"/>
+                                                                                <constraint firstAttribute="height" id="O5e-fR-7Lv"/>
                                                                             </constraints>
                                                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                             <font key="titleFont" metaFont="system"/>
                                                                         </box>
+                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="ska-lU-Q9d" userLabel="Labels Container">
+                                                                            <rect key="frame" x="9" y="10" width="282" height="39"/>
+                                                                            <subviews>
+                                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" alphaValue="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="tu6-91-Y9f" userLabel="URL">
+                                                                                    <rect key="frame" x="-2" y="0.0" width="286" height="17"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="17" id="ZwO-kp-Nn3"/>
+                                                                                    </constraints>
+                                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Pomf URL" id="Elk-Cq-ZTr">
+                                                                                        <font key="font" metaFont="system"/>
+                                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                                    </textFieldCell>
+                                                                                </textField>
+                                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="nz3-Ke-Dkv" userLabel="Name">
+                                                                                    <rect key="frame" x="-2" y="21" width="286" height="19"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="19" id="oFo-DD-Y9Y"/>
+                                                                                    </constraints>
+                                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Pomf Name" id="1i7-mS-Di3">
+                                                                                        <font key="font" metaFont="system" size="15"/>
+                                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                                    </textFieldCell>
+                                                                                </textField>
+                                                                            </subviews>
+                                                                            <constraints>
+                                                                                <constraint firstItem="nz3-Ke-Dkv" firstAttribute="leading" secondItem="ska-lU-Q9d" secondAttribute="leading" id="5cW-Hm-1c4"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="tu6-91-Y9f" secondAttribute="bottom" id="K7W-4m-n1h"/>
+                                                                                <constraint firstAttribute="height" constant="39" id="QHy-Rg-Rmy"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="nz3-Ke-Dkv" secondAttribute="trailing" id="Ufh-52-1yJ"/>
+                                                                                <constraint firstItem="nz3-Ke-Dkv" firstAttribute="top" secondItem="ska-lU-Q9d" secondAttribute="top" constant="-1" id="Wga-f5-fTk"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="tu6-91-Y9f" secondAttribute="trailing" id="fMF-Zu-00h"/>
+                                                                                <constraint firstItem="tu6-91-Y9f" firstAttribute="leading" secondItem="ska-lU-Q9d" secondAttribute="leading" id="uEP-rN-HCb"/>
+                                                                            </constraints>
+                                                                        </customView>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstItem="tu6-91-Y9f" firstAttribute="top" secondItem="nz3-Ke-Dkv" secondAttribute="bottom" constant="4" id="3G5-Ch-olh"/>
-                                                                        <constraint firstItem="nz3-Ke-Dkv" firstAttribute="leading" secondItem="XGL-kX-GCJ" secondAttribute="leading" constant="6" id="7hP-hA-Gzy"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="nz3-Ke-Dkv" secondAttribute="trailing" constant="6" id="CoR-RW-qLX"/>
-                                                                        <constraint firstItem="d3E-Dt-xOI" firstAttribute="leading" secondItem="XGL-kX-GCJ" secondAttribute="leading" constant="3" id="GdU-Ee-GzX"/>
-                                                                        <constraint firstItem="nz3-Ke-Dkv" firstAttribute="top" secondItem="XGL-kX-GCJ" secondAttribute="top" constant="8" id="HBp-Be-5HF"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="d3E-Dt-xOI" secondAttribute="bottom" id="XJf-b1-lc2"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="tu6-91-Y9f" secondAttribute="trailing" constant="6" id="hpk-UP-wlW"/>
-                                                                        <constraint firstItem="tu6-91-Y9f" firstAttribute="leading" secondItem="XGL-kX-GCJ" secondAttribute="leading" constant="6" id="uZJ-x5-Zws"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="d3E-Dt-xOI" secondAttribute="trailing" constant="3" id="vPF-G4-bPD"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="d3E-Dt-xOI" secondAttribute="trailing" constant="3" id="1jI-Qc-DEw"/>
+                                                                        <constraint firstItem="ska-lU-Q9d" firstAttribute="centerY" secondItem="XGL-kX-GCJ" secondAttribute="centerY" id="5wt-Ql-na9"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="ska-lU-Q9d" secondAttribute="trailing" constant="9" id="Hkk-1Z-aDb"/>
+                                                                        <constraint firstItem="d3E-Dt-xOI" firstAttribute="leading" secondItem="XGL-kX-GCJ" secondAttribute="leading" constant="3" id="Ozd-Qh-gcQ"/>
+                                                                        <constraint firstItem="ska-lU-Q9d" firstAttribute="leading" secondItem="XGL-kX-GCJ" secondAttribute="leading" constant="9" id="Y6e-Ws-lCi"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="d3E-Dt-xOI" secondAttribute="bottom" id="iNR-8x-7gn"/>
                                                                     </constraints>
                                                                     <connections>
+                                                                        <outlet property="nameLabel" destination="nz3-Ke-Dkv" id="Gjf-2h-r33"/>
                                                                         <outlet property="textField" destination="nz3-Ke-Dkv" id="weB-2y-U7c"/>
+                                                                        <outlet property="urlLabel" destination="tu6-91-Y9f" id="2TI-E3-6DB"/>
                                                                     </connections>
                                                                 </tableCellView>
                                                             </prototypeCellViews>

@@ -10,7 +10,7 @@ import Alamofire
 import SwiftyJSON
 
 /// Represents a pomf clone the user can upload to
-class AKPomf {
+class AKPomf: NSObject {
     /// The name of this pomf clone
     var name : String = "";
     

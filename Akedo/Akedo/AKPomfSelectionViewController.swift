@@ -19,7 +19,7 @@ class AKPomfSelectionViewController: NSViewController {
     @IBOutlet var backgroundVisualEffectView: NSVisualEffectView!
     
     /// The pomf clones to show in the pomf list table view
-    var pomfListItems : [AKPomf] = [AKPomf(name: "mixtape.moe", url: "https://mixtape.moe/"), AKPomf(name: "pomf.cat", url: "https://pomf.cat/"), AKPomf(name: "catgirlsare.sexy", url: "https://catgirlsare.sexy/")];
+    var pomfListItems : [AKPomf] = [AKPomf(name: "Mixtape.moe", url: "https://mixtape.moe/"), AKPomf(name: "Pomf.cat", url: "https://pomf.cat/"), AKPomf(name: "Catgirlsare.sexy", url: "https://catgirlsare.sexy/")];
     
     /// The scroll view for pomfListTableView
     @IBOutlet weak var pomfListTableViewScrollView: NSScrollView!
@@ -27,13 +27,70 @@ class AKPomfSelectionViewController: NSViewController {
     /// The table view for letting the user pick a pomf clone to upload to
     @IBOutlet weak var pomfListTableView: NSTableView!
     
+    /// The local key listener for picking up when the user presses a number key so they can quick select a pomf clone
+    var keyListener : AnyObject? = nil;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         // Style the window
         styleWindow();
         
+        // Reload the pomf list table view
         pomfListTableView.reloadData();
+        
+        // Create the key listener
+        keyListener = NSEvent.addLocalMonitorForEventsMatchingMask(NSEventMask.KeyDownMask, handler: keyPressed);
+    }
+    
+    /// Called when the user presses a key
+    func keyPressed(event : NSEvent) -> NSEvent {
+        /// The number that the user may have pressed(-1 if the user didnt press a number)
+        var pressedNumber : Int = -1;
+            
+        // Switch on the key code and set pressedNumber accordingly
+        switch event.keyCode {
+            case 18,83:
+                pressedNumber = 1;
+                break;
+            case 19,84:
+                pressedNumber = 2;
+                break;
+            case 20,85:
+                pressedNumber = 3;
+                break;
+            case 21,86:
+                pressedNumber = 4;
+                break;
+            case 23,87:
+                pressedNumber = 5;
+                break;
+            case 22,88:
+                pressedNumber = 6;
+                break;
+            case 26,89:
+                pressedNumber = 7;
+                break;
+            case 28,91:
+                pressedNumber = 8;
+                break;
+            case 25,92:
+                pressedNumber = 9;
+                break;
+            default:
+                break;
+        }
+            
+        // If the pressed number is greater than -1...
+        if(pressedNumber > -1) {
+            // If pressedNumber is in range of pomfListItems...
+            if(pressedNumber <= pomfListItems.count) {
+                // Call pomfSelected with the pomf clone at the pressed number
+                pomfSelected(pomfListItems[pressedNumber - 1]);
+            }
+        }
+        
+        return event;
     }
     
     override func viewWillAppear() {
@@ -44,6 +101,20 @@ class AKPomfSelectionViewController: NSViewController {
         
         // Fix the X positioning
         self.window.setFrame(NSRect(x: (NSScreen.mainScreen()!.frame.width / 2) - (self.window.frame.width / 2), y: self.window.frame.origin.y, width: self.window.frame.width, height: self.window.frame.height), display: false);
+        
+        // Bring this window to the front
+        self.window.makeKeyAndOrderFront(self);
+    }
+    
+    /// Called when the user clicks or uses a keycombo to select a pomf to upload to
+    func pomfSelected(pomf : AKPomf) {
+        print(pomf.name);
+        
+        // Close the window
+        self.window.close();
+        
+        // Destroy the key listener
+        NSEvent.removeMonitor(keyListener!);
     }
     
     /// Styles the window
@@ -88,6 +159,11 @@ extension AKPomfSelectionViewController: NSTableViewDataSource {
             let cellData : AKPomf = pomfListItems[row];
             
             // Display the cell's data
+            pomfListTableCellView.displayPomf(cellData);
+            
+            // Set the cell's click target and action
+            pomfListTableCellView.clickTarget = self;
+            pomfListTableCellView.clickAction = Selector("pomfSelected:");
             
             // Return the modified cell view
             return pomfListTableCellView as NSTableCellView;
