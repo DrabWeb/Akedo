@@ -30,6 +30,12 @@ class AKPomfSelectionViewController: NSViewController {
     /// The local key listener for picking up when the user presses a number key so they can quick select a pomf clone
     var keyListener : AnyObject? = nil;
     
+    /// The object to perform pomfSelectedAction
+    var pomfSelectedTarget : AnyObject? = nil;
+    
+    /// The selector to call when the user selects a pomf host, passed the selected AKPomf
+    var pomfSelectedAction : Selector = Selector("");
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -108,7 +114,8 @@ class AKPomfSelectionViewController: NSViewController {
     
     /// Called when the user clicks or uses a keycombo to select a pomf to upload to
     func pomfSelected(pomf : AKPomf) {
-        print(pomf.name);
+        // Print what pomf host the user selected
+        print("AKPomfSelectionViewController: User selected \"\(pomf.name)\" as host");
         
         // Close the window
         self.window.close();
@@ -118,6 +125,9 @@ class AKPomfSelectionViewController: NSViewController {
         
         // Reactivate the previous app
         NSApplication.sharedApplication().hide(self);
+        
+        // Call pomfSelectedAction
+        pomfSelectedTarget?.performSelector(pomfSelectedAction, withObject: pomf);
     }
     
     /// Styles the window

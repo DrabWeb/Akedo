@@ -18,7 +18,7 @@ class AKPomf: NSObject {
     var url : String = "";
     
     /// Uploads the file(s) at the given path(s) to this pomf clone and calls the completion handler with the URL(s), and if the upload was successful
-    func uploadFile(filePaths : [String], completionHandler : ((([String], Bool)) -> ())) {
+    func uploadFiles(filePaths : [String], completionHandler : ((([String], Bool)) -> ())) {
         /// The URL to the uploaded file(s)
         var urls : [String] = [];
         
@@ -52,8 +52,21 @@ class AKPomf: NSObject {
                                 
                                 // For every uploaded file...
                                 for(_, currentFileData) in responseJson["files"] {
+                                    /// The current file URL
+                                    var currentUrl : String = currentFileData["url"].stringValue.stringByReplacingOccurrencesOfString("\\", withString: "");
+                                    
+                                    // If the URL doesnt have a ://...
+                                    if(!currentUrl.containsString("://")) {
+                                        // Fix up the URL
+                                        /// The prefix of this pomf clones URL(Either http:// or https://)
+                                        let urlPrefix : String = (self.url.substringToIndex(self.url.rangeOfString("://")!.startIndex)) + "://";
+                                        
+                                        // Set currentUrl to urlPrefix + "a." + self.url without prefix + currentUrl
+                                        currentUrl = urlPrefix + ("a." + self.url.stringByReplacingOccurrencesOfString(urlPrefix, withString: "")) + currentUrl;
+                                    }
+                                    
                                     // Add the current file's URL to urls
-                                    urls.append(currentFileData["url"].stringValue.stringByReplacingOccurrencesOfString("\\", withString: ""));
+                                    urls.append(currentUrl);
                                 }
                                 
                                 // Set successful
