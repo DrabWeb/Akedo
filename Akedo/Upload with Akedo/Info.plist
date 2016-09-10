@@ -31,7 +31,7 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>NSExtensionActivationRule</key>
-			<string>NSExtensionActivationSupportsFileWithMaxCount</string>
+			<string>TRUEPREDICATE</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.share-services</string>
@@ -39,6 +39,6 @@
 		<string>$(PRODUCT_MODULE_NAME).ShareViewController</string>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2016 DrabWeb. All rights reserved.</string>
+	<string></string>
 </dict>
 </plist>

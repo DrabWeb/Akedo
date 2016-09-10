@@ -9,7 +9,7 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
-
+    
     /// The main status item for Akedo
     var uploadStatusItem : NSStatusItem = NSStatusItem();
 
