@@ -191,7 +191,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(uploadFailedNotification);
             
             // Print that we failed to upload the files
-            print("AppDelegate: Failed to upload \(lastUploadFiles) to \(lastUploadHost)");
+            print("AppDelegate: Failed to upload \(lastUploadFiles) to \(lastUploadHost!.name)");
         }
         
         // If the upload was succesful and at least one file uploaded...
