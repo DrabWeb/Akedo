@@ -17,6 +17,12 @@ class AKPomf: NSObject {
     /// The URL to this pomf clone(E.g. https://mixtape.moe/)
     var url : String = "";
     
+    /// The max file size for uploading(in MB)
+    var maxFileSize : Int = 0;
+    
+    /// For some pomf hosts they use a subdomain for uploaded files(E.g. pomf.cat, uses a.pomf.cat for uploads), this variable is the "a." in that example, optional
+    var uploadUrlPrefix : String = "";
+    
     /// Uploads the file(s) at the given path(s) to this pomf clone and calls the completion handler with the URL(s), and if the upload was successful
     func uploadFiles(filePaths : [String], completionHandler : ((([String], Bool)) -> ())) {
         /// The URL to the uploaded file(s)
@@ -26,7 +32,7 @@ class AKPomf: NSObject {
         var successful : Bool = false;
         
         // Print what file we are uploading and where to
-        print("Uploading \"\(filePaths)\" to \(self.name)(\(self.url + "upload.php"))");
+        print("AKPomf: Uploading \"\(filePaths)\" to \(self.name)(\(self.url + "upload.php"))");
         
         // Make the upload request
         Alamofire.upload(.POST, self.url + "upload.php",
@@ -62,7 +68,7 @@ class AKPomf: NSObject {
                                         let urlPrefix : String = (self.url.substringToIndex(self.url.rangeOfString("://")!.startIndex)) + "://";
                                         
                                         // Set currentUrl to urlPrefix + "a." + self.url without prefix + currentUrl
-                                        currentUrl = urlPrefix + ("a." + self.url.stringByReplacingOccurrencesOfString(urlPrefix, withString: "")) + currentUrl;
+                                        currentUrl = urlPrefix + (self.uploadUrlPrefix + self.url.stringByReplacingOccurrencesOfString(urlPrefix, withString: "")) + currentUrl;
                                     }
                                     
                                     // Add the current file's URL to urls
@@ -85,9 +91,18 @@ class AKPomf: NSObject {
         )
     }
     
-    // Init with a name and URL
-    init(name: String, url : String) {
+    // Init with a name, URL and max file size
+    init(name: String, url : String, maxFileSize : Int) {
         self.name = name;
         self.url = url;
+        self.maxFileSize = maxFileSize;
+    }
+    
+    // Init with a name, URL, max file size and URL prefix
+    init(name: String, url : String, maxFileSize : Int, uploadUrlPrefix : String) {
+        self.name = name;
+        self.url = url;
+        self.maxFileSize = maxFileSize;
+        self.uploadUrlPrefix = uploadUrlPrefix;
     }
 }

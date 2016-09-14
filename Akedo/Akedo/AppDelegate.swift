@@ -12,6 +12,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     /// The main status item for Akedo
     var uploadStatusItem : NSStatusItem = NSStatusItem();
+    
+    /// All the pomf hosts the user can use
+    var pomfHosts : [AKPomf] = [AKPomf(name: "Mixtape.moe", url: "https://mixtape.moe/", maxFileSize: 100),
+                                AKPomf(name: "Pomf.cat", url: "https://pomf.cat/", maxFileSize: 75, uploadUrlPrefix: "a."),
+                                AKPomf(name: "Sugoi~", url: "https://sugoi.vidyagam.es/", maxFileSize: 100),
+                                AKPomf(name: "Fuwa fuwa~", url: "https://p.fuwafuwa.moe/", maxFileSize: 256),
+                                AKPomf(name: "Kyaa", url: "https://kyaa.sg/", maxFileSize: 100, uploadUrlPrefix: "r."),
+                                AKPomf(name: "Fluntcaps", url: "https://fluntcaps.me/", maxFileSize: 500, uploadUrlPrefix: "a.")];
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
@@ -156,6 +164,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             
             // Deliver the notification
             NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(uploadedNotification);
+            
+            // Print that we uploaded the files
+            print("AppDelegate: Uploaded \(lastUploadFiles) to \(lastUploadHost)");
         }
         // If the upload was unsuccesful...
         else {
@@ -178,6 +189,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             
             // Deliver the notification
             NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(uploadFailedNotification);
+            
+            // Print that we failed to upload the files
+            print("AppDelegate: Failed to upload \(lastUploadFiles) to \(lastUploadHost)");
         }
         
         // If the upload was succesful and at least one file uploaded...

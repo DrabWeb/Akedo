@@ -37,7 +37,7 @@ class AKPomfTableCellView: NSTableCellView {
         representedPomf = pomf;
         
         // Display the data
-        self.nameLabel.stringValue = representedPomf!.name;
+        self.nameLabel.stringValue = representedPomf!.name + " (\(pomf.maxFileSize) MB)";
         self.urlLabel.stringValue = representedPomf!.url;
     }
     

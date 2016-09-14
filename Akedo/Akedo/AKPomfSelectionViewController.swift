@@ -19,7 +19,7 @@ class AKPomfSelectionViewController: NSViewController {
     @IBOutlet var backgroundVisualEffectView: NSVisualEffectView!
     
     /// The pomf clones to show in the pomf list table view
-    var pomfListItems : [AKPomf] = [AKPomf(name: "Mixtape.moe", url: "https://mixtape.moe/"), AKPomf(name: "Pomf.cat", url: "https://pomf.cat/"), AKPomf(name: "Catgirlsare.sexy", url: "https://catgirlsare.sexy/")];
+    var pomfListItems : [AKPomf] = (NSApplication.sharedApplication().delegate as! AppDelegate).pomfHosts;
     
     /// The scroll view for pomfListTableView
     @IBOutlet weak var pomfListTableViewScrollView: NSScrollView!
