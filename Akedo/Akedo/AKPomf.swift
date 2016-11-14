@@ -24,7 +24,7 @@ class AKPomf: NSObject {
     var uploadUrlPrefix : String = "";
     
     /// Uploads the file(s) at the given path(s) to this pomf clone and calls the completion handler with the URL(s), and if the upload was successful
-    func uploadFiles(filePaths : [String], completionHandler : ((([String], Bool)) -> ())) {
+    func uploadFiles(_ filePaths : [String], completionHandler : @escaping ((([String], Bool)) -> ())) {
         /// The URL to the uploaded file(s)
         var urls : [String] = [];
         
@@ -35,40 +35,41 @@ class AKPomf: NSObject {
         print("AKPomf: Uploading \"\(filePaths)\" to \(self.name)(\(self.url + "upload.php"))");
         
         // Make the upload request
-        Alamofire.upload(.POST, self.url + "upload.php",
+        Alamofire.upload(
             multipartFormData: { multipartFormData in
                 // For every file to upload...
-                for(_, currentFilePath) in filePaths.enumerate() {
+                for(_, currentFilePath) in filePaths.enumerated() {
                     // Append the current file path to the files[] multipart data
-                    multipartFormData.appendBodyPart(fileURL: NSURL(fileURLWithPath: currentFilePath), name: "files[]");
+                    multipartFormData.append(URL(fileURLWithPath: currentFilePath), withName: "files[]");
                 }
             },
+            to: self.url + "upload.php",
             encodingCompletion: { encodingResult in
                 switch encodingResult {
                     // If the encode was a success...
-                    case .Success(let upload, _, _):
+                    case .success(let upload, _, _):
                         upload.responseJSON { (responseData) -> Void in
                             /// The string of JSON that will be returned when the POST request finishes
-                            let responseJsonString : NSString = NSString(data: responseData.data!, encoding: NSUTF8StringEncoding)!;
+                            let responseJsonString : NSString = NSString(data: responseData.data!, encoding: String.Encoding.utf8.rawValue)!;
                             
                             // If the the response data isnt nil...
-                            if let dataFromResponseJsonString = responseJsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                            if let dataFromResponseJsonString = responseJsonString.data(using: String.Encoding.utf8.rawValue, allowLossyConversion: false) {
                                 /// The JSON from the response string
                                 let responseJson = JSON(data: dataFromResponseJsonString);
                                 
                                 // For every uploaded file...
                                 for(_, currentFileData) in responseJson["files"] {
                                     /// The current file URL
-                                    var currentUrl : String = currentFileData["url"].stringValue.stringByReplacingOccurrencesOfString("\\", withString: "");
+                                    var currentUrl : String = currentFileData["url"].stringValue.replacingOccurrences(of: "\\", with: "");
                                     
                                     // If the URL doesnt have a ://...
-                                    if(!currentUrl.containsString("://")) {
+                                    if(!currentUrl.contains("://")) {
                                         // Fix up the URL
                                         /// The prefix of this pomf clones URL(Either http:// or https://)
-                                        let urlPrefix : String = (self.url.substringToIndex(self.url.rangeOfString("://")!.startIndex)) + "://";
+                                        let urlPrefix : String = (self.url.substring(to: self.url.range(of: "://")!.lowerBound)) + "://";
                                         
                                         // Set currentUrl to urlPrefix + "a." + self.url without prefix + currentUrl
-                                        currentUrl = urlPrefix + (self.uploadUrlPrefix + self.url.stringByReplacingOccurrencesOfString(urlPrefix, withString: "")) + currentUrl;
+                                        currentUrl = urlPrefix + (self.uploadUrlPrefix + self.url.replacingOccurrences(of: urlPrefix, with: "")) + currentUrl;
                                     }
                                     
                                     // Add the current file's URL to urls
@@ -83,7 +84,7 @@ class AKPomf: NSObject {
                             }
                     }
                     // If the encode was a failure...
-                    case .Failure(let encodingError):
+                    case .failure(let encodingError):
                         // Print the encoding error
                         print("AKPomf(\(self.name)): Error encoding \"\(filePaths)\", \(encodingError)");
                 }

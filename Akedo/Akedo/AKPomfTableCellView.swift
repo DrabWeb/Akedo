@@ -3,7 +3,6 @@
 //  Akedo
 //
 //  Created by Seth on 2016-09-08.
-//  Copyright © 2016 DrabWeb. All rights reserved.
 //
 
 import Cocoa
@@ -23,16 +22,16 @@ class AKPomfTableCellView: NSTableCellView {
     var clickTarget : AnyObject? = nil;
     
     /// The selector to perform when the user clicks this cell, passed representedPomf
-    var clickAction : Selector = Selector("");
+    var clickAction : Selector? = nil;
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
 
         // Drawing code here.
     }
     
     /// Displays the given AKPomf's data in this cell, and sets representedPomf to its
-    func displayPomf(pomf : AKPomf) {
+    func displayPomf(_ pomf : AKPomf) {
         // Set representedPomf
         representedPomf = pomf;
         
@@ -41,10 +40,12 @@ class AKPomfTableCellView: NSTableCellView {
         self.urlLabel.stringValue = representedPomf!.url;
     }
     
-    override func mouseDown(theEvent: NSEvent) {
-        super.mouseDown(theEvent);
+    override func mouseDown(with theEvent: NSEvent) {
+        super.mouseDown(with: theEvent);
         
         // Call clickAction
-        clickTarget?.performSelector(clickAction, withObject: self.representedPomf!);
+        if(clickAction != nil) {
+            clickTarget?.perform(clickAction!, with: self.representedPomf!);
+        }
     }
 }

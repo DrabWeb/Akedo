@@ -653,7 +653,7 @@
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="BOs-ab-ITg">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="229" y="249" width="300" height="400"/>
+                        <rect key="contentRect" x="229" y="249" width="300" height="407"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1600" height="900"/>
                     </window>
                     <connections>
@@ -669,20 +669,20 @@
             <objects>
                 <viewController id="waW-Hh-RAu" userLabel="Pomf Selection View Controller" customClass="AKPomfSelectionViewController" customModule="Akedo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="e6T-vB-jWt">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="407"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="wms-LO-t0E">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="343"/>
+                            <visualEffectView appearanceType="vibrantDark" misplaced="YES" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="wms-LO-t0E">
+                                <rect key="frame" x="0.0" y="7" width="300" height="342"/>
                                 <subviews>
-                                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="58" horizontalPageScroll="10" verticalLineScroll="58" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8U-cl-t0g" userLabel="Scroll View - Pomf List Table View">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="343"/>
+                                    <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="58" horizontalPageScroll="10" verticalLineScroll="58" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8U-cl-t0g" userLabel="Scroll View - Pomf List Table View">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="342"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="AvR-Da-TQ4">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="343"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="342"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="58" viewBased="YES" id="vNS-ah-Sj7" userLabel="Pomf List Table View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="0.0"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="342"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -721,7 +721,7 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="17" id="ZwO-kp-Nn3"/>
                                                                                     </constraints>
-                                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Pomf URL" id="Elk-Cq-ZTr">
+                                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" enabled="NO" sendsActionOnEndEditing="YES" title="Pomf URL" id="Elk-Cq-ZTr">
                                                                                         <font key="font" metaFont="system"/>
                                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -732,7 +732,7 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="19" id="oFo-DD-Y9Y"/>
                                                                                     </constraints>
-                                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Pomf Name" id="1i7-mS-Di3">
+                                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" enabled="NO" sendsActionOnEndEditing="YES" title="Pomf Name" id="1i7-mS-Di3">
                                                                                         <font key="font" metaFont="system" size="15"/>
                                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -793,12 +793,12 @@
                                 </constraints>
                             </visualEffectView>
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="42l-ap-agj" userLabel="Titlebar Visual Effect View">
-                                <rect key="frame" x="0.0" y="343" width="300" height="57"/>
+                                <rect key="frame" x="0.0" y="349" width="300" height="58"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="44K-vg-71T" userLabel="Title">
-                                        <rect key="frame" x="18" y="20" width="264" height="17"/>
+                                        <rect key="frame" x="18" y="20" width="264" height="18"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="17" id="6HM-vE-nG1"/>
+                                            <constraint firstAttribute="height" constant="18" id="6HM-vE-nG1"/>
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Select a host" id="6LY-cI-wDB">
                                             <font key="font" metaFont="system"/>
@@ -808,9 +808,8 @@
                                     </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="44K-vg-71T" secondAttribute="bottom" constant="20" id="Oqe-X7-aVf"/>
-                                    <constraint firstItem="44K-vg-71T" firstAttribute="top" secondItem="42l-ap-agj" secondAttribute="top" constant="20" id="V0t-9Q-U4r"/>
-                                    <constraint firstAttribute="height" constant="57" id="f6I-Xs-My8"/>
+                                    <constraint firstItem="44K-vg-71T" firstAttribute="centerY" secondItem="42l-ap-agj" secondAttribute="centerY" id="1b9-l8-KeZ"/>
+                                    <constraint firstAttribute="height" constant="58" id="f6I-Xs-My8"/>
                                     <constraint firstItem="44K-vg-71T" firstAttribute="leading" secondItem="42l-ap-agj" secondAttribute="leading" constant="20" id="rcY-s4-fOl"/>
                                     <constraint firstAttribute="trailing" secondItem="44K-vg-71T" secondAttribute="trailing" constant="20" id="ycS-qn-fAc"/>
                                 </constraints>

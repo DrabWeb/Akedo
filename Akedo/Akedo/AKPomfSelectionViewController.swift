@@ -19,7 +19,7 @@ class AKPomfSelectionViewController: NSViewController {
     @IBOutlet var backgroundVisualEffectView: NSVisualEffectView!
     
     /// The pomf clones to show in the pomf list table view
-    var pomfListItems : [AKPomf] = (NSApplication.sharedApplication().delegate as! AppDelegate).pomfHosts;
+    var pomfListItems : [AKPomf] = (NSApplication.shared().delegate as! AppDelegate).pomfHosts;
     
     /// The scroll view for pomfListTableView
     @IBOutlet weak var pomfListTableViewScrollView: NSScrollView!
@@ -34,7 +34,10 @@ class AKPomfSelectionViewController: NSViewController {
     var pomfSelectedTarget : AnyObject? = nil;
     
     /// The selector to call when the user selects a pomf host, passed the selected AKPomf
-    var pomfSelectedAction : Selector = Selector("");
+    var pomfSelectedAction : Selector? = nil;
+    
+    /// The combined size of the files the user is trying to upload
+    var filesSize : Float = 0;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +49,11 @@ class AKPomfSelectionViewController: NSViewController {
         pomfListTableView.reloadData();
         
         // Create the key listener
-        keyListener = NSEvent.addLocalMonitorForEventsMatchingMask(NSEventMask.KeyDownMask, handler: keyPressed);
+        keyListener = NSEvent.addLocalMonitorForEvents(matching: NSEventMask.keyDown, handler: keyPressed) as AnyObject?;
     }
     
     /// Called when the user presses a key
-    func keyPressed(event : NSEvent) -> NSEvent {
+    func keyPressed(_ event : NSEvent) -> NSEvent {
         /// The number that the user may have pressed(-1 if the user didnt press a number)
         var pressedNumber : Int = -1;
             
@@ -102,18 +105,66 @@ class AKPomfSelectionViewController: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear();
         
+        // Make sure to only show the pomf hosts that will let us upload our files
+        
+        /// The new items for pomfListItems, only includes the hosts that allow the size we are trying to upload
+        var newPomfListItems : [AKPomf] = [];
+        
+        // For every current pomf list item...
+        for(_, currentItem) in self.pomfListItems.enumerated() {
+            // If the combined file size is less than the current pomf's file size limit...
+            if(filesSize < Float(currentItem.maxFileSize)) {
+                // Add the current pomf to newPomfListItems
+                newPomfListItems.append(currentItem);
+            }
+        }
+        
+        // If newPomfListItems isnt empty...
+        if(newPomfListItems.count != 0) {
+            // Set pomfListItems to newPomfListItems
+            self.pomfListItems = newPomfListItems;
+            
+            // Reload pomfListTableView
+            pomfListTableView.reloadData();
+        }
+        // If newPomfListItems is empty...
+        else {
+            // Send a notification saying the files are too big and cancel the upload
+            /// The notification to tell the user the files are too large
+            let tooLargeNotification : NSUserNotification = NSUserNotification();
+            
+            // Setup the notification
+            tooLargeNotification.title = "Akedo";
+            tooLargeNotification.informativeText = "Selected file(s) are too large(\(filesSize)MB)";
+            
+            // Post the notification
+            NSUserNotificationCenter.default.deliver(tooLargeNotification);
+            
+            // Close the window
+            self.window.close();
+            
+            // Destroy the key listener
+            NSEvent.removeMonitor(keyListener!);
+            
+            // Reactivate the previous app
+            NSApplication.shared().hide(self);
+            
+            // Print that we couldnt upload the files because they were too large
+            print("AKPomfSelectionViewController: Selected file(s) are too large(\(filesSize)MB)");
+        }
+        
         // Center the window
         self.window.center();
         
         // Fix the X positioning
-        self.window.setFrame(NSRect(x: (NSScreen.mainScreen()!.frame.width / 2) - (self.window.frame.width / 2), y: self.window.frame.origin.y, width: self.window.frame.width, height: self.window.frame.height), display: false);
+        self.window.setFrame(NSRect(x: (NSScreen.main()!.frame.width / 2) - (self.window.frame.width / 2), y: self.window.frame.origin.y, width: self.window.frame.width, height: self.window.frame.height), display: false);
         
         // Bring this window to the front
         self.window.makeKeyAndOrderFront(self);
     }
     
     /// Called when the user clicks or uses a keycombo to select a pomf to upload to
-    func pomfSelected(pomf : AKPomf) {
+    func pomfSelected(_ pomf : AKPomf) {
         // Print what pomf host the user selected
         print("AKPomfSelectionViewController: User selected \"\(pomf.name)\" as host");
         
@@ -124,44 +175,46 @@ class AKPomfSelectionViewController: NSViewController {
         NSEvent.removeMonitor(keyListener!);
         
         // Reactivate the previous app
-        NSApplication.sharedApplication().hide(self);
+        NSApplication.shared().hide(self);
         
         // Call pomfSelectedAction
-        pomfSelectedTarget?.performSelector(pomfSelectedAction, withObject: pomf);
+        if(pomfSelectedAction != nil) {
+            pomfSelectedTarget?.perform(pomfSelectedAction!, with: pomf);
+        }
     }
     
     /// Styles the window
     func styleWindow() {
         // Get the window
-        window = NSApplication.sharedApplication().windows.last!;
+        window = NSApplication.shared().windows.last!;
         
         // Style the visual effect views
-        titlebarVisualEffectView.material = .Titlebar;
-        backgroundVisualEffectView.material = .Dark;
+        titlebarVisualEffectView.material = .titlebar;
+        backgroundVisualEffectView.material = .dark;
         
         // Style the window's titlebar
-        window.titleVisibility = .Hidden;
-        window.styleMask |= NSFullSizeContentViewWindowMask;
+        window.titleVisibility = .hidden;
+        window.styleMask.insert(NSFullSizeContentViewWindowMask);
         window.titlebarAppearsTransparent = true;
-        window.standardWindowButton(.CloseButton)?.superview?.superview?.removeFromSuperview();
+        window.standardWindowButton(.closeButton)?.superview?.superview?.removeFromSuperview();
         
         // Set the window's level
-        window.level = Int(CGWindowLevelForKey(.FloatingWindowLevelKey));
+        window.level = Int(CGWindowLevelForKey(.floatingWindow));
         
         // Disable moving the window
-        self.window.movable = false;
+        self.window.isMovable = false;
     }
 }
 
 extension AKPomfSelectionViewController: NSTableViewDataSource {
-    func numberOfRowsInTableView(aTableView: NSTableView) -> Int {
+    func numberOfRows(in aTableView: NSTableView) -> Int {
         // Return the amount of items in tagListItems
         return self.pomfListItems.count;
     }
     
-    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         /// The cell view for the cell we want to modify
-        let cellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: nil) as! NSTableCellView;
+        let cellView: NSTableCellView = tableView.make(withIdentifier: tableColumn!.identifier, owner: nil) as! NSTableCellView;
         
         // If this is the main column...
         if(tableColumn!.identifier == "Main Column") {
@@ -176,7 +229,7 @@ extension AKPomfSelectionViewController: NSTableViewDataSource {
             
             // Set the cell's click target and action
             pomfListTableCellView.clickTarget = self;
-            pomfListTableCellView.clickAction = Selector("pomfSelected:");
+            pomfListTableCellView.clickAction = #selector(AKPomfSelectionViewController.pomfSelected(_:));
             
             // Return the modified cell view
             return pomfListTableCellView as NSTableCellView;

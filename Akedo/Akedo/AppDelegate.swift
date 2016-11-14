@@ -18,19 +18,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                                 AKPomf(name: "Pomf.cat", url: "https://pomf.cat/", maxFileSize: 75, uploadUrlPrefix: "a."),
                                 AKPomf(name: "Sugoi~", url: "https://sugoi.vidyagam.es/", maxFileSize: 100),
                                 AKPomf(name: "Fuwa fuwa~", url: "https://p.fuwafuwa.moe/", maxFileSize: 256),
-                                AKPomf(name: "Kyaa", url: "https://kyaa.sg/", maxFileSize: 100, uploadUrlPrefix: "r."),
-                                AKPomf(name: "Fluntcaps", url: "https://fluntcaps.me/", maxFileSize: 500, uploadUrlPrefix: "a.")];
+        AKPomf(name: "Kyaa", url: "https://kyaa.sg/", maxFileSize: 100, uploadUrlPrefix: "r.")];
+//                                AKPomf(name: "Fluntcaps", url: "https://fluntcaps.me/", maxFileSize: 500, uploadUrlPrefix: "a.")];
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         // Create the status bar item
         createStatusItem();
         
         // Set the user notification center delegate
-        NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self;
+        NSUserNotificationCenter.default.delegate = self;
     }
     
-    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
         // Always show notifications, even when the app is active
         return true;
     }
@@ -38,17 +38,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     /// Creates uploadStatusBarItem
     func createStatusItem() {
         // Create uploadStatusItem
-        uploadStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1);
+        uploadStatusItem = NSStatusBar.system().statusItem(withLength: -1);
         
         // Set the item's image scaling
-        (uploadStatusItem.button!.cell as! NSButtonCell).imageScaling = .ScaleProportionallyDown;
+        (uploadStatusItem.button!.cell as! NSButtonCell).imageScaling = .scaleProportionallyDown;
         
         // Set the icon
         uploadStatusItem.image = NSImage(named: "AKUploadIcon")!;
         
         // Set the target and action
         uploadStatusItem.button!.target = self;
-        uploadStatusItem.button!.action = Selector("uploadStatusItemPressed");
+        uploadStatusItem.button!.action = #selector(AppDelegate.uploadStatusItemPressed);
     }
     
     /// Called when the user presses uploadStatusItem
@@ -61,17 +61,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         openPanel.prompt = "Upload";
         openPanel.allowsMultipleSelection = true;
         
-        NSApplication.sharedApplication().activateIgnoringOtherApps(true);
+        NSApplication.shared().activate(ignoringOtherApps: true);
         
         // Run the open panel, and if the user selects "Upload"...
-        if(Bool(openPanel.runModal())) {
+        if(Bool(openPanel.runModal() as NSNumber)) {
             /// The list of files to upload
             var fileList : [String] = [];
             
             // For every file URL selected in the openPanel...
-            for(_, currentFileUrl) in openPanel.URLs.enumerate() {
+            for(_, currentFileUrl) in openPanel.urls.enumerated() {
                 // Add the current file URL to fileList
-                fileList.append(currentFileUrl.absoluteString.stringByRemovingPercentEncoding!.stringByReplacingOccurrencesOfString("file://", withString: ""));
+                fileList.append(currentFileUrl.absoluteString.removingPercentEncoding!.replacingOccurrences(of: "file://", with: ""));
             }
             
             // Upload the files
@@ -80,7 +80,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         // If the user cancelled the open panel...
         else {
             // Re-activate the previous app
-            NSApplication.sharedApplication().hide(self);
+            NSApplication.shared().hide(self);
         }
     }
     
@@ -91,15 +91,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     var lastUploadHost : AKPomf? = nil;
     
     // Prompts the user to select a pomf host and then uploads the given files to that host
-    func uploadFiles(filePaths : [String]) {
+    func uploadFiles(_ filePaths : [String]) {
         // Set lastUploadFiles
         lastUploadFiles = filePaths;
+        
+        /// The combined size of all the files in filePaths, in megabytes
+        let combinedSize : Float = FileManager.default.sizeOfFiles(filePaths);
+        
+        print("AppDelegate: Trying to upload \(combinedSize)MB of files");
         
         // Print that we are prompting the user for a pomf host
         print("AppDelegate: Asking the user to select a pomf host");
         
         // Create the new pomf selection window
-        let pomfSelectionWindowController : NSWindowController = NSStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateControllerWithIdentifier("PomfSelectionWindowController") as! NSWindowController;
+        let pomfSelectionWindowController : NSWindowController = NSStoryboard(name: "Main", bundle: Bundle.main).instantiateController(withIdentifier: "PomfSelectionWindowController") as! NSWindowController;
         
         // Load the window
         pomfSelectionWindowController.loadWindow();
@@ -107,16 +112,24 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         /// The AKPomfSelectionViewController of pomfSelectionWindowController
         let pomfSelectionViewController : AKPomfSelectionViewController = (pomfSelectionWindowController.contentViewController as! AKPomfSelectionViewController);
         
+        // Set filesSize
+        pomfSelectionViewController.filesSize = combinedSize;
+        
         // Set the pomf host selected target and action
         pomfSelectionViewController.pomfSelectedTarget = self;
-        pomfSelectionViewController.pomfSelectedAction = Selector("pomfHostSelected:");
+        pomfSelectionViewController.pomfSelectedAction = #selector(AppDelegate.pomfHostSelected(_:));
         
-        // Present the pomf host selection window
-        pomfSelectionWindowController.window!.makeKeyAndOrderFront(self);
+        if(pomfSelectionViewController.pomfListItems.count != 0) {
+            // Present the pomf host selection window
+            pomfSelectionWindowController.window!.makeKeyAndOrderFront(self);
+        }
+        else {
+            pomfSelectionWindowController.window!.close();
+        }
     }
     
     /// Called when the user selects a pomf host presented by uploadFiles
-    func pomfHostSelected(pomf : AKPomf) {
+    func pomfHostSelected(_ pomf : AKPomf) {
         // Print the pomf host we will upload to
         print("AppDelegate: Uploading \(lastUploadFiles) to \"\(pomf.name)\"");
         
@@ -138,14 +151,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
         
         // Deliver the notification
-        NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(uploadingNotification);
+        NSUserNotificationCenter.default.deliver(uploadingNotification);
         
         // Upload the files
         pomf.uploadFiles(lastUploadFiles, completionHandler: pomfUploadCompleted)
     }
     
     /// Called when the pomf upload from pomfHostSelected is completed
-    func pomfUploadCompleted(response : ([String], Bool)) {
+    func pomfUploadCompleted(_ response : ([String], Bool)) {
         // If the upload was succesful...
         if(response.1) {
             // Post the notification saying the upload completed
@@ -163,7 +176,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             }
             
             // Deliver the notification
-            NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(uploadedNotification);
+            NSUserNotificationCenter.default.deliver(uploadedNotification);
             
             // Print that we uploaded the files
             print("AppDelegate: Uploaded \(lastUploadFiles) to \(lastUploadHost)");
@@ -188,7 +201,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             }
             
             // Deliver the notification
-            NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(uploadFailedNotification);
+            NSUserNotificationCenter.default.deliver(uploadFailedNotification);
             
             // Print that we failed to upload the files
             print("AppDelegate: Failed to upload \(lastUploadFiles) to \(lastUploadHost!.name)");
@@ -201,24 +214,24 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             var urlsString : String = "";
             
             // For every URL in the responses uploaded files...
-            for(_, currentUrl) in response.0.enumerate() {
+            for(_, currentUrl) in response.0.enumerated() {
                 // Append the current URL to urlsString with a trailing new line
-                urlsString.appendContentsOf(currentUrl + "\n");
+                urlsString.append(currentUrl + "\n");
             }
             
             // Remove the final trailing new line
-            urlsString = urlsString.substringToIndex(urlsString.endIndex.predecessor());
+            urlsString = urlsString.substring(to: urlsString.characters.index(before: urlsString.endIndex));
             
             // Copy urlsString to the pasteboard
             // Add the string type to the general pasteboard
-            NSPasteboard.generalPasteboard().declareTypes([NSStringPboardType], owner: nil);
+            NSPasteboard.general().declareTypes([NSStringPboardType], owner: nil);
             
             // Set the string of the general pasteboard to urlsString
-            NSPasteboard.generalPasteboard().setString(urlsString, forType: NSStringPboardType);
+            NSPasteboard.general().setString(urlsString, forType: NSStringPboardType);
         }
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
 }
