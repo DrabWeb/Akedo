@@ -87,6 +87,23 @@ class AKPomf: NSObject {
                     case .failure(let encodingError):
                         // Print the encoding error
                         print("AKPomf(\(self.name)): Error encoding \"\(filePaths)\", \(encodingError)");
+                    
+                        // Post the notification saying the file failed to encode
+                        /// The notification to say the file encoding failed
+                        let fileEncodingFailedNotification : NSUserNotification = NSUserNotification();
+                        
+                        // Setup the notification
+                        fileEncodingFailedNotification.title = "Akedo";
+                        
+                        if(filePaths.count == 1) {
+                            fileEncodingFailedNotification.informativeText = "Failed to encode \(filePaths.count) file for \(self.name)";
+                        }
+                        else {
+                            fileEncodingFailedNotification.informativeText = "Failed to encode \(filePaths.count) files for \(self.name)";
+                        }
+                        
+                        // Deliver the notification
+                        NSUserNotificationCenter.default.deliver(fileEncodingFailedNotification);
                 }
             }
         )
