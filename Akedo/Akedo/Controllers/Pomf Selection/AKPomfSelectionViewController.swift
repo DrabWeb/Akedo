@@ -7,7 +7,10 @@
 
 import Cocoa
 
+/// The view controller for the pomf host selection window that comes up before uploading files
 class AKPomfSelectionViewController: NSViewController {
+    
+    // MARK: - Properties
     
     /// The main window of this view controller
     var window : NSWindow = NSWindow();
@@ -18,17 +21,14 @@ class AKPomfSelectionViewController: NSViewController {
     /// The visual effect view for the background of the window
     @IBOutlet var backgroundVisualEffectView: NSVisualEffectView!
     
-    /// The pomf clones to show in the pomf list table view
+    /// The pomf hosts to show in the pomf list table view
     var pomfListItems : [AKPomf] = (NSApplication.shared().delegate as! AppDelegate).pomfHosts;
     
     /// The scroll view for pomfListTableView
     @IBOutlet weak var pomfListTableViewScrollView: NSScrollView!
     
-    /// The table view for letting the user pick a pomf clone to upload to
+    /// The table view for letting the user pick a pomf host to upload to
     @IBOutlet weak var pomfListTableView: NSTableView!
-    
-    /// The local key listener for picking up when the user presses a number key so they can quick select a pomf clone
-    var keyListener : AnyObject? = nil;
     
     /// The object to perform pomfSelectedAction
     var pomfSelectedTarget : AnyObject? = nil;
@@ -39,95 +39,107 @@ class AKPomfSelectionViewController: NSViewController {
     /// The combined size of the files the user is trying to upload
     var filesSize : Float = 0;
     
+    
+    // MARK: - Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        // Style the window
-        styleWindow();
+        // Setup the view controller
+        self.setup();
         
         // Reload the pomf list table view
         pomfListTableView.reloadData();
-        
-        // Create the key listener
-        keyListener = NSEvent.addLocalMonitorForEvents(matching: NSEventMask.keyDown, handler: keyPressed) as AnyObject?;
     }
     
-    /// Called when the user presses a key
-    func keyPressed(_ event : NSEvent) -> NSEvent {
+    override func keyDown(with event: NSEvent) {
         /// The number that the user may have pressed(-1 if the user didnt press a number)
         var pressedNumber : Int = -1;
-            
-        // Switch on the key code and set pressedNumber accordingly
+        
+        // Switch on the key code and set `pressedNumber` accordingly
         switch event.keyCode {
             case 18,83:
                 pressedNumber = 1;
                 break;
+            
             case 19,84:
                 pressedNumber = 2;
                 break;
+            
             case 20,85:
                 pressedNumber = 3;
                 break;
+            
             case 21,86:
                 pressedNumber = 4;
                 break;
+            
             case 23,87:
                 pressedNumber = 5;
                 break;
+            
             case 22,88:
                 pressedNumber = 6;
                 break;
+            
             case 26,89:
                 pressedNumber = 7;
                 break;
+            
             case 28,91:
                 pressedNumber = 8;
                 break;
+            
             case 25,92:
                 pressedNumber = 9;
                 break;
+            
             default:
                 break;
         }
-            
-        // If the pressed number is greater than -1...
+        
+        // If the user pressed a number...
         if(pressedNumber > -1) {
-            // If pressedNumber is in range of pomfListItems...
-            if(pressedNumber <= pomfListItems.count) {
-                // Call pomfSelected with the pomf clone at the pressed number
+            // If `pressedNumber` is in range of `pomfListItems`...
+            if(pressedNumber < pomfListItems.count) {
+                // Call `pomfSelected` with the pomf host at the pressed number
                 pomfSelected(pomfListItems[pressedNumber - 1]);
             }
+            else {
+                super.keyDown(with: event);
+            }
         }
-        
-        return event;
+        else {
+            super.keyDown(with: event);
+        }
     }
     
     override func viewWillAppear() {
         super.viewWillAppear();
         
-        // Make sure to only show the pomf hosts that will let us upload our files
+        // Make sure to only show the pomf hosts that will let the user upload files
         
-        /// The new items for pomfListItems, only includes the hosts that allow the size we are trying to upload
+        /// The new items for `pomfListItems`, only includes the hosts that allow the size the user is trying to upload
         var newPomfListItems : [AKPomf] = [];
         
         // For every current pomf list item...
         for(_, currentItem) in self.pomfListItems.enumerated() {
             // If the combined file size is less than the current pomf's file size limit...
             if(filesSize < Float(currentItem.maxFileSize)) {
-                // Add the current pomf to newPomfListItems
+                // Add the current pomf to `newPomfListItems`
                 newPomfListItems.append(currentItem);
             }
         }
         
-        // If newPomfListItems isnt empty...
-        if(newPomfListItems.count != 0) {
-            // Set pomfListItems to newPomfListItems
+        // If `newPomfListItems` isnt empty...
+        if(!newPomfListItems.isEmpty) {
+            // Set `pomfListItems` to `newPomfListItems`
             self.pomfListItems = newPomfListItems;
             
-            // Reload pomfListTableView
+            // Reload `pomfListTableView`
             pomfListTableView.reloadData();
         }
-        // If newPomfListItems is empty...
+        // If `newPomfListItems` is empty...
         else {
             // Send a notification saying the files are too big and cancel the upload
             /// The notification to tell the user the files are too large
@@ -142,9 +154,6 @@ class AKPomfSelectionViewController: NSViewController {
             
             // Close the window
             self.window.close();
-            
-            // Destroy the key listener
-            NSEvent.removeMonitor(keyListener!);
             
             // Reactivate the previous app
             NSApplication.shared().hide(self);
@@ -163,16 +172,14 @@ class AKPomfSelectionViewController: NSViewController {
         self.window.makeKeyAndOrderFront(self);
     }
     
-    /// Called when the user clicks or uses a keycombo to select a pomf to upload to
+    /// Called when the user selects a pomf host to upload to
+    ///
+    /// - Parameter pomf: The `AKPomf` that was selected
     func pomfSelected(_ pomf : AKPomf) {
-        // Print what pomf host the user selected
         print("AKPomfSelectionViewController: User selected \"\(pomf.name)\" as host");
         
         // Close the window
         self.window.close();
-        
-        // Destroy the key listener
-        NSEvent.removeMonitor(keyListener!);
         
         // Reactivate the previous app
         NSApplication.shared().hide(self);
@@ -183,8 +190,8 @@ class AKPomfSelectionViewController: NSViewController {
         }
     }
     
-    /// Styles the window
-    func styleWindow() {
+    /// Sets up this view controller
+    func setup() {
         // Get the window
         window = NSApplication.shared().windows.last!;
         
@@ -208,7 +215,7 @@ class AKPomfSelectionViewController: NSViewController {
 
 extension AKPomfSelectionViewController: NSTableViewDataSource {
     func numberOfRows(in aTableView: NSTableView) -> Int {
-        // Return the amount of items in tagListItems
+        // Return the amount of items in `tagListItems`
         return self.pomfListItems.count;
     }
     
@@ -218,7 +225,7 @@ extension AKPomfSelectionViewController: NSTableViewDataSource {
         
         // If this is the main column...
         if(tableColumn!.identifier == "Main Column") {
-            /// cellView as a AKPomfTableCellView
+            /// `cellView` as a `AKPomfTableCellView`
             let pomfListTableCellView : AKPomfTableCellView = cellView as! AKPomfTableCellView;
             
             /// The data for this cell

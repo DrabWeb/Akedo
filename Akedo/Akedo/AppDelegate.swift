@@ -10,6 +10,8 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     
+    // MARK: - Properties
+    
     /// The main status item for Akedo
     var uploadStatusItem : NSStatusItem = NSStatusItem();
     
@@ -20,9 +22,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                                 AKPomf(name: "Fuwa fuwa~", url: "https://p.fuwafuwa.moe/", maxFileSize: 256),
         AKPomf(name: "Kyaa", url: "https://kyaa.sg/", maxFileSize: 100, uploadUrlPrefix: "r.")];
 //                                AKPomf(name: "Fluntcaps", url: "https://fluntcaps.me/", maxFileSize: 500, uploadUrlPrefix: "a.")];
-
+    
+    /// The last files that were sent to be uploaded
+    var lastUploadFiles : [String] = [];
+    
+    /// The last pomf host the user selected
+    var lastUploadHost : AKPomf? = nil;
+    
+    
+    // MARK: - Functions
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
         // Create the status bar item
         createStatusItem();
         
@@ -35,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         return true;
     }
     
-    /// Creates uploadStatusBarItem
+    /// Creates `uploadStatusBarItem`
     func createStatusItem() {
         // Create uploadStatusItem
         uploadStatusItem = NSStatusBar.system().statusItem(withLength: -1);
@@ -51,9 +61,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         uploadStatusItem.button!.action = #selector(AppDelegate.uploadStatusItemPressed);
     }
     
-    /// Called when the user presses uploadStatusItem
+    /// Called when the user presses `uploadStatusItem`
     func uploadStatusItemPressed() {
-        /// The open panel for prompting for file(s) to upload
+        /// The open panel for prompting for files to upload
         let openPanel : NSOpenPanel = NSOpenPanel();
         
         // Setup the open panel
@@ -61,6 +71,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         openPanel.prompt = "Upload";
         openPanel.allowsMultipleSelection = true;
         
+        // Activate Akedo
         NSApplication.shared().activate(ignoringOtherApps: true);
         
         // Run the open panel, and if the user selects "Upload"...
@@ -68,7 +79,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             /// The list of files to upload
             var fileList : [String] = [];
             
-            // For every file URL selected in the openPanel...
+            // For every file URL selected in the open panel...
             for(_, currentFileUrl) in openPanel.urls.enumerated() {
                 // Add the current file URL to fileList
                 fileList.append(currentFileUrl.absoluteString.removingPercentEncoding!.replacingOccurrences(of: "file://", with: ""));
@@ -84,56 +95,54 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
     }
     
-    /// The last files that were sent to be uploaded
-    var lastUploadFiles : [String] = [];
-    
-    /// The last pomf host the user selected
-    var lastUploadHost : AKPomf? = nil;
-    
-    // Prompts the user to select a pomf host and then uploads the given files to that host
+    /// Prompts the user to select a pomf host and then uploads the given files to that host
+    ///
+    /// - Parameter filePaths: The paths of the files to upload
     func uploadFiles(_ filePaths : [String]) {
-        // Set lastUploadFiles
+        // Store `lastUploadFiles` in `filePaths`
         lastUploadFiles = filePaths;
         
-        /// The combined size of all the files in filePaths, in megabytes
+        /// The combined size of all the files in `filePaths`, in megabytes
         let combinedSize : Float = FileManager.default.sizeOfFiles(filePaths);
         
         print("AppDelegate: Trying to upload \(combinedSize)MB of files");
-        
-        // Print that we are prompting the user for a pomf host
         print("AppDelegate: Asking the user to select a pomf host");
         
-        // Create the new pomf selection window
+        /// The window controller for the new pomf selection window
         let pomfSelectionWindowController : NSWindowController = NSStoryboard(name: "Main", bundle: Bundle.main).instantiateController(withIdentifier: "PomfSelectionWindowController") as! NSWindowController;
         
         // Load the window
         pomfSelectionWindowController.loadWindow();
         
-        /// The AKPomfSelectionViewController of pomfSelectionWindowController
+        /// The `AKPomfSelectionViewController` of `pomfSelectionWindowController`
         let pomfSelectionViewController : AKPomfSelectionViewController = (pomfSelectionWindowController.contentViewController as! AKPomfSelectionViewController);
         
-        // Set filesSize
+        // Set `filesSize`
         pomfSelectionViewController.filesSize = combinedSize;
         
         // Set the pomf host selected target and action
         pomfSelectionViewController.pomfSelectedTarget = self;
         pomfSelectionViewController.pomfSelectedAction = #selector(AppDelegate.pomfHostSelected(_:));
         
+        // If there is at least one pomf host in `pomfListItems`...
         if(pomfSelectionViewController.pomfListItems.count != 0) {
             // Present the pomf host selection window
             pomfSelectionWindowController.window!.makeKeyAndOrderFront(self);
         }
+        // If there are no pomf hosts in `pomfListItems`...
         else {
+            // Stop trying to upload and close the window
             pomfSelectionWindowController.window!.close();
         }
     }
     
-    /// Called when the user selects a pomf host presented by uploadFiles
+    /// Called when the user selects a pomf host presented by `uploadFiles`
+    ///
+    /// - Parameter pomf: The `AKPomf` that was selected
     func pomfHostSelected(_ pomf : AKPomf) {
-        // Print the pomf host we will upload to
         print("AppDelegate: Uploading \(lastUploadFiles) to \"\(pomf.name)\"");
         
-        // Set lastUploadHost
+        // Set `lastUploadHost`
         lastUploadHost = pomf;
         
         // Post the notification saying we are uploading files and how many
@@ -142,22 +151,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         // Setup the notification
         uploadingNotification.title = "Akedo";
-        
-        if(lastUploadFiles.count > 1) {
-            uploadingNotification.informativeText = "Uploading \(lastUploadFiles.count) files to \(pomf.name)";
-        }
-        else {
-            uploadingNotification.informativeText = "Uploading \(lastUploadFiles.count) file to \(pomf.name)";
-        }
+        uploadingNotification.informativeText = "Uploading \(lastUploadFiles.count) file\((lastUploadFiles.count == 1) ? "" : "s") to \(pomf.name)";
         
         // Deliver the notification
         NSUserNotificationCenter.default.deliver(uploadingNotification);
         
         // Upload the files
-        pomf.uploadFiles(lastUploadFiles, completionHandler: pomfUploadCompleted)
+        pomf.upload(files: lastUploadFiles, completionHandler: pomfUploadCompleted);
     }
     
-    /// Called when the pomf upload from pomfHostSelected is completed
+    /// Called when the pomf upload from `pomfHostSelected` is completed
+    ///
+    /// - Parameter response: The response from the upload
     func pomfUploadCompleted(_ response : ([String], Bool)) {
         // If the upload was succesful...
         if(response.1) {
@@ -190,11 +195,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             // Setup the notification
             uploadFailedNotification.title = "Akedo";
             
-            if(response.0.count > 1) {
-                uploadFailedNotification.informativeText = "Failed to upload \(response.0.count) files to \(lastUploadHost!.name)";
-            }
-            else if(response.0.count == 1) {
-                uploadFailedNotification.informativeText = "Failed to upload \(response.0.count) file to \(lastUploadHost!.name)";
+            if(response.0.count > 0) {
+                uploadFailedNotification.informativeText = "Failed to upload \(response.0.count) file\((response.0.count == 1) ? "" : "s") to \(lastUploadHost!.name)";
             }
             else {
                 uploadFailedNotification.informativeText = "Failed to connect to \(lastUploadHost!.name)";
@@ -203,7 +205,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             // Deliver the notification
             NSUserNotificationCenter.default.deliver(uploadFailedNotification);
             
-            // Print that we failed to upload the files
             print("AppDelegate: Failed to upload \(lastUploadFiles) to \(lastUploadHost!.name)");
         }
         
@@ -229,9 +230,5 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             // Set the string of the general pasteboard to urlsString
             NSPasteboard.general().setString(urlsString, forType: NSStringPboardType);
         }
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
     }
 }

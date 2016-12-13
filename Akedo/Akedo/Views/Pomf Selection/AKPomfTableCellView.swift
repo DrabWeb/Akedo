@@ -9,6 +9,8 @@ import Cocoa
 
 class AKPomfTableCellView: NSTableCellView {
 
+    // MARK: - Properties
+    
     /// The label for displaying the name of this pomf clone
     @IBOutlet var nameLabel: NSTextField!
     
@@ -23,16 +25,15 @@ class AKPomfTableCellView: NSTableCellView {
     
     /// The selector to perform when the user clicks this cell, passed representedPomf
     var clickAction : Selector? = nil;
-    
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
 
-        // Drawing code here.
-    }
     
-    /// Displays the given AKPomf's data in this cell, and sets representedPomf to its
+    // MARK: - Functions
+    
+    /// Displays the given `AKPomf`'s data in this cell
+    ///
+    /// - Parameter pomf: The `AKPomf` to display
     func displayPomf(_ pomf : AKPomf) {
-        // Set representedPomf
+        // Set `representedPomf`
         representedPomf = pomf;
         
         // Display the data

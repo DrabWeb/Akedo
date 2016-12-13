@@ -23,7 +23,6 @@ extension FileManager {
                 size += fileSize;
             }
             catch let error as NSError {
-                // Print the error to the log
                 print("NSFileManager: Error getting size of \"\(currentFile)\", \(error.description)");
             }
         }
