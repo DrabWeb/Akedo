@@ -179,7 +179,7 @@ class AKPomfSelectionViewController: NSViewController {
         
         // Call pomfSelectedAction
         if(pomfSelectedAction != nil) {
-            pomfSelectedTarget?.perform(pomfSelectedAction!, with: pomf);
+            _ = pomfSelectedTarget?.perform(pomfSelectedAction!, with: pomf);
         }
     }
     

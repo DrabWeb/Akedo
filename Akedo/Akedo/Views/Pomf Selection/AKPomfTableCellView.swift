@@ -45,7 +45,7 @@ class AKPomfTableCellView: NSTableCellView {
         
         // Call clickAction
         if(clickAction != nil) {
-            clickTarget?.perform(clickAction!, with: self.representedPomf!);
+            _ = clickTarget?.perform(clickAction!, with: self.representedPomf!);
         }
     }
 }

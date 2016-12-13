@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -672,17 +674,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="407"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView appearanceType="vibrantDark" misplaced="YES" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="wms-LO-t0E">
-                                <rect key="frame" x="0.0" y="7" width="300" height="342"/>
+                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="wms-LO-t0E">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="349"/>
                                 <subviews>
-                                    <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="58" horizontalPageScroll="10" verticalLineScroll="58" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8U-cl-t0g" userLabel="Scroll View - Pomf List Table View">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="342"/>
+                                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="58" horizontalPageScroll="10" verticalLineScroll="58" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8U-cl-t0g" userLabel="Scroll View - Pomf List Table View">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="349"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="AvR-Da-TQ4">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="342"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="349"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="58" viewBased="YES" id="vNS-ah-Sj7" userLabel="Pomf List Table View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="342"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="349"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -704,14 +706,11 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="58"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <box verticalHuggingPriority="750" alphaValue="0.25" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="d3E-Dt-xOI" userLabel="Bottom Separator">
+                                                                        <box verticalHuggingPriority="750" alphaValue="0.25" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="d3E-Dt-xOI" userLabel="Bottom Separator">
                                                                             <rect key="frame" x="3" y="-2" width="294" height="4"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" id="O5e-fR-7Lv"/>
                                                                             </constraints>
-                                                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                            <font key="titleFont" metaFont="system"/>
                                                                         </box>
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="ska-lU-Q9d" userLabel="Labels Container">
                                                                             <rect key="frame" x="9" y="10" width="282" height="39"/>
@@ -792,7 +791,7 @@
                                     <constraint firstAttribute="trailing" secondItem="A8U-cl-t0g" secondAttribute="trailing" id="zVs-xH-auA"/>
                                 </constraints>
                             </visualEffectView>
-                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="42l-ap-agj" userLabel="Titlebar Visual Effect View">
+                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="42l-ap-agj" userLabel="Titlebar Visual Effect View">
                                 <rect key="frame" x="0.0" y="349" width="300" height="58"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="44K-vg-71T" userLabel="Title">

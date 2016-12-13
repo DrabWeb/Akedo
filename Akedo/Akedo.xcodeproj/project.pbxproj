@@ -7,17 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D7F9A441D82025C007BAE4F /* AKPomfSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7F9A431D82025C007BAE4F /* AKPomfSelectionViewController.swift */; };
-		5D9F0EE41D89D98B00EE236A /* Akedo.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 5D9F0EE31D89D98B00EE236A /* Akedo.entitlements */; };
-		5D9F0EE61D89F17A00EE236A /* AKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9F0EE51D89F17A00EE236A /* AKExtensions.swift */; };
 		5D9F1EDC1D7CB28A0009A8A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9F1EDB1D7CB28A0009A8A9 /* AppDelegate.swift */; };
 		5D9F1EE01D7CB28A0009A8A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D9F1EDF1D7CB28A0009A8A9 /* Assets.xcassets */; };
 		5D9F1EE31D7CB28A0009A8A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D9F1EE11D7CB28A0009A8A9 /* Main.storyboard */; };
 		5D9F1EEE1D7CB28A0009A8A9 /* AkedoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9F1EED1D7CB28A0009A8A9 /* AkedoTests.swift */; };
 		5D9F1EF91D7CB28A0009A8A9 /* AkedoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9F1EF81D7CB28A0009A8A9 /* AkedoUITests.swift */; };
-		5D9F1F0F1D7CCE330009A8A9 /* AKPomf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9F1F0E1D7CCE330009A8A9 /* AKPomf.swift */; };
-		5DDF26841D8215B600D0926C /* AKPomfTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF26831D8215B600D0926C /* AKPomfTableCellView.swift */; };
 		6799253F08497C233740A46C /* Pods_AkedoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65CB0E7CE82F69547D83E6EF /* Pods_AkedoUITests.framework */; };
+		AE1C4B701DFFE78700DF9D37 /* AKPomfSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1C4B6F1DFFE78700DF9D37 /* AKPomfSelectionViewController.swift */; };
+		AE1C4B731DFFE78D00DF9D37 /* AKPomf.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1C4B721DFFE78D00DF9D37 /* AKPomf.swift */; };
+		AE1C4B761DFFE79100DF9D37 /* AKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1C4B751DFFE79100DF9D37 /* AKExtensions.swift */; };
+		AE1C4B7A1DFFE79500DF9D37 /* AKPomfTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1C4B791DFFE79500DF9D37 /* AKPomfTableCellView.swift */; };
 		D6C7175C125BFBF691EDD035 /* Pods_AkedoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 031F40BFE6F6294EFF4BA3F7 /* Pods_AkedoTests.framework */; };
 		DD5CAC3EE0EB7BFC45888FC7 /* Pods_Akedo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8993F24CCF17EA91D5BFC47 /* Pods_Akedo.framework */; };
 /* End PBXBuildFile section */
@@ -57,9 +56,6 @@
 		04424F03F896352CFA07A44A /* Pods-AkedoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkedoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AkedoUITests/Pods-AkedoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2FCCB301F09C16D1AC440973 /* Pods_Upload_with_Akedo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Upload_with_Akedo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B6B09802DAD6912424D7DD0 /* Pods-AkedoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkedoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AkedoTests/Pods-AkedoTests.release.xcconfig"; sourceTree = "<group>"; };
-		5D7F9A431D82025C007BAE4F /* AKPomfSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKPomfSelectionViewController.swift; sourceTree = "<group>"; };
-		5D9F0EE31D89D98B00EE236A /* Akedo.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Akedo.entitlements; sourceTree = "<group>"; };
-		5D9F0EE51D89F17A00EE236A /* AKExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKExtensions.swift; sourceTree = "<group>"; };
 		5D9F1ED81D7CB28A0009A8A9 /* Akedo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Akedo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9F1EDB1D7CB28A0009A8A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D9F1EDF1D7CB28A0009A8A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,12 +67,14 @@
 		5D9F1EF41D7CB28A0009A8A9 /* AkedoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AkedoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9F1EF81D7CB28A0009A8A9 /* AkedoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkedoUITests.swift; sourceTree = "<group>"; };
 		5D9F1EFA1D7CB28A0009A8A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5D9F1F0E1D7CCE330009A8A9 /* AKPomf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKPomf.swift; sourceTree = "<group>"; };
-		5DDF26831D8215B600D0926C /* AKPomfTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKPomfTableCellView.swift; sourceTree = "<group>"; };
 		5DF516E61D84722A004EB16D /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Pods/../build/Debug/Alamofire/Alamofire.framework; sourceTree = "<group>"; };
 		65CB0E7CE82F69547D83E6EF /* Pods_AkedoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AkedoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		747467C3044820F62D6F55A9 /* Pods-Akedo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Akedo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Akedo/Pods-Akedo.debug.xcconfig"; sourceTree = "<group>"; };
 		A158317D2970FF1EB00AD845 /* Pods-AkedoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkedoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AkedoUITests/Pods-AkedoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AE1C4B6F1DFFE78700DF9D37 /* AKPomfSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKPomfSelectionViewController.swift; sourceTree = "<group>"; };
+		AE1C4B721DFFE78D00DF9D37 /* AKPomf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKPomf.swift; sourceTree = "<group>"; };
+		AE1C4B751DFFE79100DF9D37 /* AKExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKExtensions.swift; sourceTree = "<group>"; };
+		AE1C4B791DFFE79500DF9D37 /* AKPomfTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKPomfTableCellView.swift; sourceTree = "<group>"; };
 		AF36EDE0D700DE8D10CE3F6C /* Pods-Akedo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Akedo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Akedo/Pods-Akedo.release.xcconfig"; sourceTree = "<group>"; };
 		D1735E81D91E7A0363AA603A /* Pods-AkedoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkedoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AkedoTests/Pods-AkedoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8993F24CCF17EA91D5BFC47 /* Pods_Akedo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Akedo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,14 +146,13 @@
 		5D9F1EDA1D7CB28A0009A8A9 /* Akedo */ = {
 			isa = PBXGroup;
 			children = (
-				5D9F0EE31D89D98B00EE236A /* Akedo.entitlements */,
 				5D9F1EDB1D7CB28A0009A8A9 /* AppDelegate.swift */,
-				5D9F1F0E1D7CCE330009A8A9 /* AKPomf.swift */,
-				5D7F9A431D82025C007BAE4F /* AKPomfSelectionViewController.swift */,
-				5DDF26831D8215B600D0926C /* AKPomfTableCellView.swift */,
-				5D9F0EE51D89F17A00EE236A /* AKExtensions.swift */,
+				AE1C4B6C1DFFE77A00DF9D37 /* Storyboards */,
+				AE1C4B6D1DFFE78700DF9D37 /* Controllers */,
+				AE1C4B711DFFE78D00DF9D37 /* Objects */,
+				AE1C4B741DFFE79100DF9D37 /* Utilities */,
+				AE1C4B771DFFE79500DF9D37 /* Views */,
 				5D9F1EDF1D7CB28A0009A8A9 /* Assets.xcassets */,
-				5D9F1EE11D7CB28A0009A8A9 /* Main.storyboard */,
 				5D9F1EE41D7CB28A0009A8A9 /* Info.plist */,
 			);
 			path = Akedo;
@@ -189,6 +186,62 @@
 				2FCCB301F09C16D1AC440973 /* Pods_Upload_with_Akedo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AE1C4B6C1DFFE77A00DF9D37 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				5D9F1EE11D7CB28A0009A8A9 /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		AE1C4B6D1DFFE78700DF9D37 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AE1C4B6E1DFFE78700DF9D37 /* Pomf Selection */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AE1C4B6E1DFFE78700DF9D37 /* Pomf Selection */ = {
+			isa = PBXGroup;
+			children = (
+				AE1C4B6F1DFFE78700DF9D37 /* AKPomfSelectionViewController.swift */,
+			);
+			path = "Pomf Selection";
+			sourceTree = "<group>";
+		};
+		AE1C4B711DFFE78D00DF9D37 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				AE1C4B721DFFE78D00DF9D37 /* AKPomf.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		AE1C4B741DFFE79100DF9D37 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AE1C4B751DFFE79100DF9D37 /* AKExtensions.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		AE1C4B771DFFE79500DF9D37 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AE1C4B781DFFE79500DF9D37 /* Pomf Selection */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AE1C4B781DFFE79500DF9D37 /* Pomf Selection */ = {
+			isa = PBXGroup;
+			children = (
+				AE1C4B791DFFE79500DF9D37 /* AKPomfTableCellView.swift */,
+			);
+			path = "Pomf Selection";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,7 +367,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D9F1EE01D7CB28A0009A8A9 /* Assets.xcassets in Resources */,
-				5D9F0EE41D89D98B00EE236A /* Akedo.entitlements in Resources */,
 				5D9F1EE31D7CB28A0009A8A9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,11 +530,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D9F1F0F1D7CCE330009A8A9 /* AKPomf.swift in Sources */,
-				5DDF26841D8215B600D0926C /* AKPomfTableCellView.swift in Sources */,
-				5D7F9A441D82025C007BAE4F /* AKPomfSelectionViewController.swift in Sources */,
-				5D9F0EE61D89F17A00EE236A /* AKExtensions.swift in Sources */,
 				5D9F1EDC1D7CB28A0009A8A9 /* AppDelegate.swift in Sources */,
+				AE1C4B761DFFE79100DF9D37 /* AKExtensions.swift in Sources */,
+				AE1C4B701DFFE78700DF9D37 /* AKPomfSelectionViewController.swift in Sources */,
+				AE1C4B7A1DFFE79500DF9D37 /* AKPomfTableCellView.swift in Sources */,
+				AE1C4B731DFFE78D00DF9D37 /* AKPomf.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,7 +672,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Akedo/Akedo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Akedo/Info.plist;
@@ -638,7 +690,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Akedo/Akedo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Akedo/Info.plist;
